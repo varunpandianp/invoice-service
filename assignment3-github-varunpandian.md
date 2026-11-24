@@ -62,4 +62,39 @@ Create app.py (or App.java) with a few lines of code,
 and a config.ini file. Commit them as two separate commits
  with meaningful messages.
 
+vi app.py  
+
+code def calculate_invoice(subtotal, tax_rate):
+    tax = subtotal * tax_rate / 100
+    total = subtotal + tax
+    return total
+
+
+invoice_total = calculate_invoice(1000, 18)
+print(f"Invoice Total: {invoice_total}")
+
+vp config.ini
+[application]
+name = invoice-service
+environment = development
+port = 8080
+
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git log --oneline
+ed225e8 (HEAD -> main) added application configuration
+cbd354d Add invoice calculation logic
+1df56d6 asigment github markedown answer update
+45b2d72 Readme File invoice- service
+
+```
+
+```
+4 -Create a file named .env containing the line API_KEY=not-a-real-secret,
+and a directory build/ containing any file.
+
+
+
+
+
 ```
