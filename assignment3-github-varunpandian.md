@@ -93,7 +93,47 @@ cbd354d Add invoice calculation logic
 4 -Create a file named .env containing the line API_KEY=not-a-real-secret,
 and a directory build/ containing any file.
 
+$ echo "API_KEY=not-a-real-secret" > .env
+$ git add .env 
 
+$ mkdir -p build
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ echo "Build output sample" > build/output.txt
+
+```
+
+```
+5-Add a .gitignore that excludes .env and build/. Commit the .gitignore.
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   assignment3-github-varunpandian.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+        build/
+
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   assignment3-github-varunpandian.md
+
+Untracked files:
+  (use "git add <file>..." to include in what will be committed)
+        .gitignore
+
+no changes added to commit (use "git add" and/or "git commit -a")
 
 
 
