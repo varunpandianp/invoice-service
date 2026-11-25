@@ -466,6 +466,75 @@ ab39215 set production environment
 # Part b 5 -5: Move HEAD back two commits while keeping changes staged
 
 ```aiignore
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   app.py
 
+
+$ git log --oneline
+089e418 (HEAD -> main) update the app.py addition problem for reset example
+1df8e0e update readme for reset command practice
+412a562 updated task 3 part A answer and commands
+9b63e93 Document Git unstage practice
+7732292 updated task 2 commands
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git reset --soft HEAD~2
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git log --oneline
+412a562 (HEAD -> main) updated task 3 part A answer and commands
+9b63e93 Document Git unstage practice
+7732292 updated task 2 commands
+1e750c7 Merge branch 'feature/staging-config'
+383a81a (feature/staging-config) set staging environmentq
+
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md
+        modified:   app.py
 
 ```
+## Task 3 – Part C: Lose Work and Recover It Using Git Reflog
+
+## Make a commit containing an important change. Note its message.
+```aiignore
+$ git log -1 --oneline
+0d14769 (HEAD -> main) Add important recovery checkpoint
+```
+## 2 Run a hard reset that discards it, and confirm with the log that the commit is gone.
+```aiignore
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git log -1 --oneline
+0d14769 (HEAD -> main) Add important recovery checkpoint
+
+git reset --hard HEAD~1
+
+```
+## 3 Recover a Discarded Commit Using Reflog
+
+```aiignore
+git reflog
+
+0d14769 Add important recovery checkpoint
+
+I recovered it using:
+
+git branch recovery/important-checkpoint 0d14769
+```
+
+## 4 Write two sentences explaining why the commit was recoverable, and name one kind of work that would not have been.
+
+```aiignore
+
+The commit was recoverable because Git's reflog retained a reference to the previous HEAD allowing me to locate the commit even after git reset --hard Uncommitted changes that were discarded by a hard reset 
+```
+
