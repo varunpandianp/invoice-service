@@ -211,3 +211,171 @@ cbd354d Add invoice calculation logic
 
 
 ```
+
+# Task 2 — Work on two things at once
+
+# Branching and merging
+
+# Create and switch to a branch named feature/currency-format. Make two commits on it.
+
+```
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git switch -c feature/currency-format
+Switched to a new branch 'feature/currency-format'
+
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (feature/currency-format)
+$ git branch
+* feature/currency-format
+  main
+
+```
+# 2 Return to main. Confirm that the files from the feature branch are not present, and explain in one sentence why.
+```
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (feature/currency-format)
+$ git switch main
+M       assignment3-github-varunpandian.md
+Switched to branch 'main'
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git branch
+feature/currency-format
+* main
+```
+# 3 -Create a branch named bugfix/rounding-error from main, make one commit, and merge it into main.
+
+```
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git switch -c bugfix/rounding-error
+Switched to a new branch 'bugfix/rounding-error'
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (bugfix/rounding-error)
+$ git branch
+* bugfix/rounding-error
+  feature/currency-format
+  main
+  
+  Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (bugfix/rounding-error)
+$ git log --oneline -3
+82cf0e2 (HEAD -> bugfix/rounding-error) Fix invoice amount rounding
+6efe9b7 (main, feature/currency-format) updated task 1 notes and commands
+ebdcca2 update the ans for que 5
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git merge bugfix/rounding-error
+Updating 6efe9b7..82cf0e2
+Fast-forward
+ app.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+ 
+ 
+
+```
+# 4 Show the history as a graph and identify whether that merge was a fast-forward or created a merge commit. Explain why.
+
+```
+$ git log --oneline --graph --all
+* 82cf0e2 (HEAD -> main, bugfix/rounding-error) Fix invoice amount rounding
+* 6efe9b7 (feature/currency-format) updated task 1 notes and commands
+* ebdcca2 update the ans for que 5
+* 30dbefc Add gitignore for local files
+* 10eaae5 add .env file
+* c18ec0b update the answer for task 1 thirs question
+* ed225e8 added application configuration
+* cbd354d Add invoice calculation logic
+* 1df56d6 asigment github markedown answer update
+* 45b2d72 Readme File invoice- service
+
+The bugfix/rounding-error branch was created from main. I made one commit on the bugfix branch and merged it into main.
+
+Since main had not received any new commits during this time Git performed a fast-forward merge It moved the main branch pointer forward to the bugfix commit without creating an additional merge commit.
+
+```
+# 5: Merge feature/currency-format into main
+
+```aiignore
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git log --oneline --graph --all
+*   8c66d8d (HEAD -> main) Merge branch 'feature/currency-format'
+|\  
+| * 115cfcd (feature/currency-format) Add currency formatting function
+* | 82cf0e2 (bugfix/rounding-error) Fix invoice amount rounding
+|/  
+* 6efe9b7 updated task 1 notes and commands
+* ebdcca2 update the ans for que 5
+* 30dbefc Add gitignore for local files
+* 10eaae5 add .env file
+* c18ec0b update the answer for task 1 thirs question
+
+```
+# 6 Delete both merged branches and prove they are gone.
+
+```aiignore
+$ git branch -d bugfix/rounding-error
+Deleted branch bugfix/rounding-error (was 82cf0e2).
+
+$ git branch -d feature/currency-format
+Deleted branch feature/currency-format (was 115cfcd).
+
+$ git branch
+* main
+
+```
+
+# 7- Create a branch named experiment/redesign, make one commit, and then delete the branch without merging it. Record the warning Git gives you and what you had to do differently.
+
+```aiignore
+$ git switch -c experiment/redesign
+Switched to a new branch 'experiment/redesign'
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (experiment/redesign)
+$ git branch
+* experiment/redesign
+  main
+  
+$ git branch -d experiment/redesign
+error: the branch 'experiment/redesign' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D experiment/redesign'
+hint: Disable this message with "git config advice.forceDeleteBranch false"
+
+```
+
+# Task 3 — Break things, then recover
+
+# 1 
+
+```aiignore
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git merge feature/staging-config
+Auto-merging config.ini
+CONFLICT (content): Merge conflict in config.ini
+Automatic merge failed; fix conflicts and then commit the result.
+
+
+
+name = invoice-service
+<<<<<<< HEAD
+environment = production
+=======
+environment = staging
+>>>>>>> feature/staging-config
+name = invoice-service
+environment = development
+port = 8080
+
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git log --oneline --graph -5
+*   1e750c7 (HEAD -> main) Merge branch 'feature/staging-config'
+|\  
+| * 383a81a (feature/staging-config) set staging environment
+* | ab39215 set production environment
+* | 326b49e Set staging environment
+* | 64fecd2 changed environment to production
+|/  
+
+
+Resolved the conflict in `config.ini` by retaining both production and staging configurations in separate section
+
+```
