@@ -3,3 +3,4 @@
 
 # Ignore generated build files
 build/
+.env
