@@ -3,6 +3,10 @@ def calculate_invoice(subtotal, tax_rate):
     total = subtotal + tax
     return total
 
+def format_currency(amount):
+    return f"₹{amount:,.2f}"
+
+print(format_currency(invoice_total))
 
 invoice_total = calculate_invoice(1000, 18)
 
