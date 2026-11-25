@@ -379,3 +379,93 @@ $ git log --oneline --graph -5
 Resolved the conflict in `config.ini` by retaining both production and staging configurations in separate section
 
 ```
+# Part B — Undo, four ways
+# Modify README.md without staging it, then discard the change and restore the committed version.
+# Stage a change by mistake, then unstage it while keeping the edit.
+# Make a commit with a deliberately wrong message, then correct the message without creating a second commit.
+# Make a commit that introduces a bug, then undo it with a command that adds a new commit rather than rewriting history. Record which command you used and explain when this is the only safe option.
+# Make two more commits, then move the branch pointer back two commits while keeping the changes staged. Show git status before and after.
+
+```aiignore
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   assignment3-github-varunpandian.md
+
+
+$ git diff
+warning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it
+diff --git a/README.md b/README.md
+index 549cdae..e659b49 100644
+--- a/README.md
++++ b/README.md
+@@ -1,3 +1,5 @@
+ invoice service is the small application billing service to generate gst sgst bill to the customer ,it help organize invoce details and maintain the e accurate billing records
+ 
+-The application currently supports invoice total calculation with tax.
+
+
+$ git restore README.md
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   assignment3-github-varunpandian.md
+
+
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git status
+On branch main
+Changes to be committed:
+  (use "git restore --staged <file>..." to unstage)
+        modified:   README.md    
+ 
+ 
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git restore --staged README.md
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git status
+On branch main
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   README.md
+        modified:   assignment3-github-varunpandian.md
+
+
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git log --oneline
+c61c3b6 (HEAD -> main) wrong message
+7732292 updated task 2 commands
+1e750c7 Merge branch 'feature/staging-config'
+383a81a (feature/staging-config) set staging environment
+ab39215 set production environment
+326b49e Set staging environment
+
+git commit --amend -m "Document Git unstage practice"
+
+Varun Pandian@VarunPandian MINGW64 /e/paperlive-assignments/git-hub-assignments/assignment3/invoice-service (main)
+$ git log --oneline
+9b63e93 (HEAD -> main) Document Git unstage practice
+7732292 updated task 2 commands
+1e750c7 Merge branch 'feature/staging-config'
+383a81a (feature/staging-config) set staging environment
+ab39215 set production environment
+
+
+```
+# Part b 5 -5: Move HEAD back two commits while keeping changes staged
+
+```aiignore
+
+
+```
